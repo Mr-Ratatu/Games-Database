@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/gameListFragment">
+
+    <fragment
+        android:id="@+id/gameListFragment"
+        android:name="com.game.database.rawg.ui.fragment.list.GameListFragment"
+        android:label="GameListFragment"
+        tools:layout="@layout/fragment_list_game" >
+        <action
+            android:id="@+id/action_gameListFragment_to_detailGameFragment"
+            app:destination="@id/detailGameFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailGameFragment"
+        android:name="com.game.database.rawg.ui.fragment.detail.DetailGameFragment"
+        android:label="DetailGameFragment"
+        tools:layout="@layout/fragment_game_detail" >
+        <argument
+            android:name="gameResult"
+            app:argType="com.game.database.rawg.data.model.list.GameResult"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.game.database.rawg.ui.fragment.favorite.FavoriteFragment"
+        android:label="FavouriteFragment"
+        tools:layout="@layout/fragment_favorite">
+        <action
+            android:id="@+id/action_favouriteFragment_to_detailGameFragment"
+            app:destination="@id/detailGameFragment" />
+    </fragment>
+
+</navigation>

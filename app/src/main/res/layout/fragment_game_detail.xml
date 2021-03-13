@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.game.database.rawg.data.model.detail.GameDetailResponse" />
+
+        <variable
+            name="vm"
+            type="com.game.database.rawg.ui.fragment.detail.DetailViewModel" />
+
+        <variable
+            name="result"
+            type="com.game.database.rawg.data.model.list.GameResult" />
+
+        <variable
+            name="state"
+            type="com.game.database.rawg.common.utils.State" />
+
+        <variable
+            name="adapter"
+            type="com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/img_layout"
+            android:layout_width="match_parent"
+            android:layout_height="400dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="220dp"
+                android:layout_height="300dp"
+                android:layout_margin="8dp"
+                app:cardElevation="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/posterDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:transitionName="detail"
+                    app:imgTransition="@{result.imageUrl}"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:alpha="0.5"
+                android:scaleType="centerCrop"
+                app:img="@{item.backgroundImage}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@tools:sample/backgrounds/scenic" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <include
+            layout="@layout/bottom_persistent_dialog"
+            app:adapter="@{adapter}"
+            app:item="@{item}"
+            app:result="@{result}"
+            app:state="@{state}"
+            app:vm="@{vm}" />
+
+        <include
+            android:id="@+id/include"
+            layout="@layout/include_progress"
+            app:state="@{state}" />
+
+        <include
+            layout="@layout/include_network_error"
+            app:state="@{state}" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
