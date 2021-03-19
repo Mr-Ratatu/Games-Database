@@ -6,7 +6,7 @@
     <data>
 
         <variable
-            name="gameResult"
+            name="items"
             type="com.game.database.rawg.data.model.list.GameResult" />
 
     </data>
@@ -37,8 +37,8 @@
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:scaleType="centerCrop"
-                android:transitionName="@{@string/transition_poster(gameResult.gameId)}"
-                app:img="@{gameResult.imageUrl}"
+                android:transitionName="@{@string/transition_poster(items.gameId)}"
+                app:img="@{items.imageUrl}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -59,7 +59,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@{gameResult.name}"
+                android:text="@{items.name}"
                 android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

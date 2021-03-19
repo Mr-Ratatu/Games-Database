@@ -22,6 +22,10 @@
             type="com.game.database.rawg.common.utils.State" />
 
         <variable
+            name="similar"
+            type="com.game.database.rawg.ui.adapters.similar.SimilarGamesAdapter" />
+
+        <variable
             name="adapter"
             type="com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter" />
 
@@ -42,6 +46,7 @@
                 android:layout_width="220dp"
                 android:layout_height="300dp"
                 android:layout_margin="8dp"
+                android:transitionName="detail"
                 app:cardElevation="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +57,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:transitionName="detail"
                     app:imgTransition="@{result.imageUrl}"
                     tools:src="@tools:sample/backgrounds/scenic" />
 
@@ -77,6 +81,7 @@
             app:adapter="@{adapter}"
             app:item="@{item}"
             app:result="@{result}"
+            app:similar="@{similar}"
             app:state="@{state}"
             app:vm="@{vm}" />
 

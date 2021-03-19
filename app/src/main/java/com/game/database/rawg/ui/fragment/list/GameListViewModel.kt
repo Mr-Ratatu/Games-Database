@@ -13,6 +13,8 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 
 class GameListViewModel(private val repository: GameListRepository) : BaseViewModel() {
 
+    var queryField = ""
+
     private val queryResult = MutableLiveData<String>()
 
     private val _pagingGames = MutableLiveData<PagingData<GameResult>>()
@@ -38,6 +40,7 @@ class GameListViewModel(private val repository: GameListRepository) : BaseViewMo
     }
 
     fun search(query: String) {
+        queryField = query
         queryResult.value = query
         pagingData()
     }

@@ -1,20 +1,22 @@
 package com.game.database.rawg.ui.adapters.list
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.database.rawg.common.utils.Constants.Companion.LOADING_ITEM
 import com.game.database.rawg.common.utils.Constants.Companion.MOVIE_ITEM
+import com.game.database.rawg.common.base.DiffUtils
 import com.game.database.rawg.data.model.list.GameResult
 import com.game.database.rawg.databinding.ItemGameBinding
-import com.game.database.rawg.ui.fragment.list.GameListFragmentDirections
-import com.game.database.rawg.common.utils.GameDiffUtils
 
-class GameListAdapter :
-    PagingDataAdapter<GameResult, GameListAdapter.GameListViewHolder>(GameDiffUtils()) {
+class GameListAdapter(private var listener: GameListListener) :
+    PagingDataAdapter<GameResult, GameListAdapter.GameListViewHolder>(DiffUtils()) {
+
+    interface GameListListener {
+        fun onGameResultClicked(result: GameResult?, poster: View)
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         GameListViewHolder(
@@ -26,10 +28,7 @@ class GameListAdapter :
         )
 
     override fun onBindViewHolder(holder: GameListViewHolder, position: Int) {
-        holder.binding.apply {
-            gameResult = getItem(position)
-            executePendingBindings()
-        }
+        holder.bind(getItem(position), listener)
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -42,20 +41,13 @@ class GameListAdapter :
     class GameListViewHolder(val binding: ItemGameBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        init {
+        fun bind(result: GameResult?, listener: GameListListener) {
             binding.apply {
-                cardItem.setOnClickListener {
-                    it.findNavController()
-                        .navigate(
-                            GameListFragmentDirections.actionGameListFragmentToDetailGameFragment(
-                                gameResult
-                            ),
-                            FragmentNavigatorExtras(poster to "detail")
-                        )
-                }
+                root.setOnClickListener { listener.onGameResultClicked(result, poster) }
+                items = result
+                executePendingBindings()
             }
         }
-
     }
 
 }

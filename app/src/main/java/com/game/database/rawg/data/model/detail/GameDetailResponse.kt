@@ -13,8 +13,6 @@ data class GameDetailResponse(
     @SerializedName("background_image_additional")
     val backgroundImage: String,
 
-    val clip: Clip,
-
     val description: String,
 
     val developers: List<Developer>,

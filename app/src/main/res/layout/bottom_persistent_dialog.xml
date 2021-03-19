@@ -25,6 +25,10 @@
             name="adapter"
             type="com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter" />
 
+        <variable
+            name="similar"
+            type="com.game.database.rawg.ui.adapters.similar.SimilarGamesAdapter" />
+
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -154,7 +158,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(item.addedByStatus.toplay)}"
+                    android:text="@{String.valueOf(item.reviewsCount)}"
                     android:textColor="@color/black40"
                     android:textStyle="bold"
                     tools:text="4539" />
@@ -162,7 +166,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/to_play"
+                    android:text="@string/reviews"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -183,7 +187,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{String.valueOf(item.addedByStatus.playing)}"
+                    android:text="@{String.valueOf(item.ratingsCount)}"
                     android:textColor="@color/black40"
                     android:textStyle="bold"
                     tools:text="2513" />
@@ -191,7 +195,7 @@
                 <com.google.android.material.textview.MaterialTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/playing"
+                    android:text="@string/ratings"
                     android:textSize="12sp"
                     android:textStyle="bold" />
 
@@ -226,6 +230,47 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/stores"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/background_button"
+                android:clickable="true"
+                android:elevation="1dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:onClick="@{() -> vm.showStores(item.stores)}"
+                android:padding="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view4">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_store" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/available_in_stores"
+                    android:textColor="@color/black40"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_open" />
+
+            </LinearLayout>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/addToFavorite"
                 android:layout_width="120dp"
@@ -233,6 +278,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="16dp"
                 android:gravity="start"
+                android:onClick="@{() -> vm.addOrRemoveToFavourite(result)}"
                 android:padding="5dp"
                 android:text="@string/add_to_list"
                 android:textAllCaps="false"
@@ -242,7 +288,25 @@
                 app:icon="@drawable/ic_add"
                 app:iconTint="@color/black40"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view4" />
+                app:layout_constraintTop_toBottomOf="@+id/stores" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/share_button"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:onClick="@{() -> vm.shareData(item.website)}"
+                android:padding="5dp"
+                android:text="@string/share"
+                android:textAllCaps="false"
+                android:textColor="@color/black40"
+                android:textSize="12sp"
+                app:backgroundTint="@color/background"
+                app:icon="@drawable/ic_share"
+                app:iconTint="@color/black40"
+                app:layout_constraintBottom_toBottomOf="@+id/addToFavorite"
+                app:layout_constraintStart_toEndOf="@+id/addToFavorite"
+                app:layout_constraintTop_toTopOf="@+id/addToFavorite" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView5"
@@ -289,10 +353,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                app:genres="@{item.genres}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView8"
-                app:genres="@{item.genres}" />
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView8" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView7"
@@ -333,16 +397,50 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/screenshots" />
 
-            <com.google.android.material.chip.ChipGroup
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:tags="@{result.gameTags}"
+                android:layout_marginTop="10dp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView9">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleLine="true"
+                    app:tags="@{result.gameTags}" />
+            </HorizontalScrollView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/similar_games"
+                android:textColor="@color/black40"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="32dp"
+                android:nestedScrollingEnabled="false"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:adapter="@{similar}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/materialTextView9" />
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView10"
+                tools:listitem="@layout/item_screenshots" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

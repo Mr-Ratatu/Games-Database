@@ -24,6 +24,9 @@
             android:name="gameResult"
             app:argType="com.game.database.rawg.data.model.list.GameResult"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_detailGameFragment_to_storesBottomDialog"
+            app:destination="@id/storesBottomDialog" />
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
@@ -34,5 +37,15 @@
             android:id="@+id/action_favouriteFragment_to_detailGameFragment"
             app:destination="@id/detailGameFragment" />
     </fragment>
+
+    <dialog
+        android:id="@+id/storesBottomDialog"
+        android:name="com.game.database.rawg.ui.fragment.detail.dialog.StoresBottomDialog"
+        android:label="StoresBottomDialog"
+        tools:layout="@layout/dialog_stores">
+        <argument
+            android:name="store"
+            app:argType="com.game.database.rawg.data.model.detail.StoreResponse[]" />
+    </dialog>
 
 </navigation>

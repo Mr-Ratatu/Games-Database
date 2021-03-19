@@ -2,13 +2,15 @@
     <string name="app_name">Game DB</string>
     <string name="wifi_off">Проблема с соединением</string>
     <string name="rating">РЕЙТИНГ</string>
-    <string name="to_play">ПОИГРАЮТ</string>
-    <string name="playing">ИГРАЮТ</string>
+    <string name="reviews">ОТЗЫВЫ</string>
+    <string name="ratings">ОЦЕНКИ</string>
     <string name="beaten">СЫГРАЛИ</string>
     <string name="description">Описание</string>
     <string name="loading">Loading…</string>
     <string name="screenshots">Скриншоты</string>
+    <string name="similar_games">Похожие игры</string>
     <string name="add_to_list">Добавить в список</string>
+    <string name="share">Поделиться</string>
     <string name="remove_to_list">Удалить из списка</string>
 
     <string name="transition_poster">poster %d</string>
@@ -17,5 +19,9 @@
     <string name="tags">Тэги</string>
     <string name="title">Game DB</string>
     <string name="search">Game search</string>
+    <string name="retry">Retry</string>
+    <string name="results_could_not_be_loaded">Results could not be loaded</string>
+    <string name="end_of_list">End of list</string>
+    <string name="available_in_stores">Доступно в магазинах</string>
 
 </resources>

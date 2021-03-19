@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
         setTransparentStatusBar()
 
         lifecycleScope.launch {
-            delay(1000)
+            delay(500)
             startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
         }

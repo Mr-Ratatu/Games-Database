@@ -20,4 +20,9 @@ interface GameApiService {
         @Path("id") id: Int?
     ) : Single<GameDetailResponse>
 
+    @GET("games/{id}/suggested")
+    fun getSimilarGames(
+        @Path("id") id: Int?
+    ) : Single<GamesResponse>
+
 }

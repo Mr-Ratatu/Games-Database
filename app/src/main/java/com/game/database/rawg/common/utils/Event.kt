@@ -12,7 +12,4 @@ data class Event<out T>(val state: State, val data: T?, val error: Throwable?) {
         fun <T> isError(error: Throwable?): Event<T> =
             Event(State.ERROR, null, error)
     }
-
-
-
 }

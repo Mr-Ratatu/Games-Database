@@ -3,20 +3,19 @@ package com.game.database.rawg.common.bindings
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.text.HtmlCompat
-import androidx.core.view.marginEnd
-import androidx.core.view.size
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.game.database.rawg.extension.hide
-import com.game.database.rawg.extension.visible
 import com.game.database.rawg.common.utils.State
 import com.game.database.rawg.data.model.detail.Genre
 import com.game.database.rawg.data.model.list.TagsResponse
+import com.game.database.rawg.extension.hide
+import com.game.database.rawg.extension.visible
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
+import java.text.SimpleDateFormat
+import java.util.*
 
 @BindingAdapter("fillingView")
 fun View.setFillingView(state: State) {
@@ -59,7 +58,14 @@ fun TextView.setHtmlText(text: String?) {
 
 @BindingAdapter("dateFormat")
 fun TextView.setDateFormat(date: String?) {
-    this.text = date
+    val parseDate = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val formatter = SimpleDateFormat("d MMM yyyy", Locale.getDefault())
+
+    try {
+        this.text = formatter.format(parseDate.parse(date))
+    } catch (e: Exception) {
+        e.printStackTrace()
+    }
 }
 
 @BindingAdapter("genres")

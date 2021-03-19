@@ -13,7 +13,8 @@ val dataBaseModule = module {
             androidContext(),
             DataBaseManager::class.java,
             DB_NAME
-        ).fallbackToDestructiveMigration()
+        ).allowMainThreadQueries()
+            .fallbackToDestructiveMigration()
             .build()
     }
 
