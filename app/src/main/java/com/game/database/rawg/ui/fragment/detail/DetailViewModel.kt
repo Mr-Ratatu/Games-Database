@@ -9,38 +9,31 @@ import com.game.database.rawg.extension.applySchedulers
 import com.game.database.rawg.common.utils.Event
 import com.game.database.rawg.data.model.detail.StoreResponse
 import com.game.database.rawg.data.model.list.GameResult
-import com.game.database.rawg.data.remote.response.GamesResponse
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 
 class DetailViewModel(private val repository: GameDetailRepository) : BaseViewModel() {
 
     private val _isFavorite = MutableLiveData<Boolean>()
-    val isFavorite: LiveData<Boolean>
-        get() = _isFavorite
+    val isFavorite: LiveData<Boolean> get() = _isFavorite
 
     private val _stores = MutableLiveData<List<StoreResponse>>()
-    val stores: LiveData<List<StoreResponse>>
-        get() = _stores
+    val stores: LiveData<List<StoreResponse>> get() = _stores
 
     private val _shareData = MutableLiveData<String>()
-    val shareData: LiveData<String>
-        get() = _shareData
+    val shareData: LiveData<String> get() = _shareData
 
     private val _loadDetail = MutableLiveData<Event<GameDetailResponse>>()
-    val loadDetail: LiveData<Event<GameDetailResponse>>
-        get() = _loadDetail
+    val loadDetail: LiveData<Event<GameDetailResponse>> get() = _loadDetail
 
-    private val _similarGames = MutableLiveData<GamesResponse>()
-    val similarGames: LiveData<GamesResponse>
-        get() = _similarGames
+    private val _similarGames = MutableLiveData<List<GameResult>>()
+    val similarGames: LiveData<List<GameResult>> get() = _similarGames
 
     fun getSimilarGames(id: Int?) {
         repository.getSimilarGames(id)
             .applySchedulers()
             .subscribeBy(
                 onSuccess = {
-                    _similarGames.postValue(it)
+                    _similarGames.postValue(it.results)
                 },
                 onError = {
                     it.printStackTrace()

@@ -8,7 +8,7 @@ class Constants {
         const val MIN_QUERY_LENGTH = 3
 
         const val LOADING_ITEM = 0
-        const val MOVIE_ITEM = 1
+        const val GAME_ITEM = 1
     }
 
 }

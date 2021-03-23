@@ -6,7 +6,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.rxjava3.cachedIn
 import com.game.database.rawg.common.base.BaseViewModel
-import com.game.database.rawg.common.utils.Event
 import com.game.database.rawg.data.model.list.GameResult
 import com.game.database.rawg.data.repository.GameListRepository
 import io.reactivex.rxjava3.kotlin.subscribeBy

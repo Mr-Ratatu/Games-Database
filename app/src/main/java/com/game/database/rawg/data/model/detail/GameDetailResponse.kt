@@ -15,8 +15,6 @@ data class GameDetailResponse(
 
     val description: String,
 
-    val developers: List<Developer>,
-
     val genres: List<Genre>,
 
     val id: Int,
@@ -25,10 +23,6 @@ data class GameDetailResponse(
 
     @SerializedName("name_original")
     val nameOriginal: String,
-
-    val platforms: List<Platforms>,
-
-    val publishers: List<Publisher>,
 
     val rating: Double,
 

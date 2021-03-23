@@ -5,13 +5,13 @@
     <item
         android:id="@+id/gameListFragment"
         android:icon="@drawable/ic_games"
-        android:title="Games"
+        android:title="@string/games"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/favouriteFragment"
         android:icon="@drawable/ic_add"
-        android:title="Favourite"
+        android:title="@string/favourite"
         app:showAsAction="ifRoom" />
 
 </menu>

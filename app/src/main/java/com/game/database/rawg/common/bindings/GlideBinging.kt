@@ -14,7 +14,6 @@ fun ImageView.setImgTransition(url: String?) {
         .apply { RequestOptions().dontTransform() }
         .transition(DrawableTransitionOptions())
         .into(this)
-
 }
 
 @BindingAdapter("img")

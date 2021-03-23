@@ -3,10 +3,8 @@ package com.game.database.rawg.extension
 import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import com.game.database.rawg.R
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.snackbar.Snackbar
 
 fun View.visible() {
     visibility = View.VISIBLE

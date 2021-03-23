@@ -23,11 +23,11 @@
 
         <variable
             name="adapter"
-            type="com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter" />
+            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
 
         <variable
             name="similar"
-            type="com.game.database.rawg.ui.adapters.similar.SimilarGamesAdapter" />
+            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
 
     </data>
 
@@ -309,6 +309,36 @@
                 app:layout_constraintTop_toTopOf="@+id/addToFavorite" />
 
             <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/materialTextView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/platform"
+                android:textColor="@color/black40"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addToFavorite" />
+
+            <HorizontalScrollView
+                android:id="@+id/chipGroup3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:overScrollMode="never"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialTextView11">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:platforms="@{result.platforms}"
+                    app:singleLine="true" />
+
+            </HorizontalScrollView>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/materialTextView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -318,7 +348,7 @@
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addToFavorite" />
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup3" />
 
             <kr.co.prnd.readmore.ReadMoreTextView
                 android:id="@+id/materialTextView6"

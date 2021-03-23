@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.game.database.rawg.ui.adapters.favourite.FavoriteAdapter.FavoriteListener" />
+            type="com.game.database.rawg.ui.adapters.listeners.FavoriteListener" />
 
     </data>
 

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.game.database.rawg.common.utils.Constants.Companion.LOADING_ITEM
-import com.game.database.rawg.common.utils.Constants.Companion.MOVIE_ITEM
+import com.game.database.rawg.common.utils.Constants.Companion.GAME_ITEM
 import com.game.database.rawg.common.base.DiffUtils
 import com.game.database.rawg.data.model.list.GameResult
 import com.game.database.rawg.databinding.ItemGameBinding
@@ -33,7 +33,7 @@ class GameListAdapter(private var listener: GameListListener) :
 
     override fun getItemViewType(position: Int): Int {
         return when (position) {
-            itemCount -> MOVIE_ITEM
+            itemCount -> GAME_ITEM
             else -> LOADING_ITEM
         }
     }

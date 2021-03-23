@@ -20,13 +20,12 @@ import com.game.database.rawg.extension.hideKeyboard
 import com.game.database.rawg.extension.waitForTransition
 import kotlinx.android.synthetic.main.fragment_list_game.*
 import kotlinx.android.synthetic.main.include_list.*
-import kotlinx.android.synthetic.main.item_game.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapter.GameListListener {
 
     private var listAdapter: GameListAdapter? = null
-    private val gridLayoutManager by lazy { GridLayoutManager(requireContext(), 2) }
+    private lateinit var gridLayoutManager: GridLayoutManager
     private val gameListViewModel by viewModel<GameListViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -35,13 +34,16 @@ class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapte
         setHasOptionsMenu(true)
 
         listAdapter = GameListAdapter(this)
+        gridLayoutManager = GridLayoutManager(requireContext(), 2)
 
-        binding.apply {
-            recycler.adapter = listAdapter?.withLoadStateHeaderAndFooter(
+        binding.layoutManager = spanSizeLayoutManager()
+
+        recycler.apply {
+            adapter = listAdapter?.withLoadStateHeaderAndFooter(
                 header = GameLoadStateAdapter { listAdapter?.retry() },
                 footer = GameLoadStateAdapter { listAdapter?.retry() }
             )
-            waitForTransition(recycler)
+            waitForTransition(this)
         }
 
         observeData()
@@ -56,7 +58,7 @@ class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapte
         }
     }
 
-    private fun spanSizeLayoutManager() {
+    private fun spanSizeLayoutManager(): GridLayoutManager {
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 return when (Constants.LOADING_ITEM) {
@@ -65,6 +67,7 @@ class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapte
                 }
             }
         }
+        return gridLayoutManager
     }
 
     private fun refreshList() {
@@ -84,27 +87,40 @@ class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapte
         val searchMenu = menu.findItem(R.id.menu_action_search)
         val searchView = searchMenu.actionView as SearchView
 
+        checkOnEmptySearchView(searchMenu, searchView)
+        //setActionExpandScrollView(searchMenu)
         setUpScrollView(searchView)
-        //checkOnEmptySearchView(searchMenu, searchView)
     }
 
     private fun setUpScrollView(searchView: SearchView) {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
+                view?.hideKeyboard()
                 searchView.clearFocus()
                 gameListViewModel.search(query)
-                recycler.scrollToPosition(0)
-                view?.hideKeyboard()
                 return true
             }
 
             override fun onQueryTextChange(query: String): Boolean {
                 if (query.length >= MIN_QUERY_LENGTH) {
                     gameListViewModel.search(query)
-                    recycler.scrollToPosition(0)
                 }
                 return true
             }
+        })
+    }
+
+    private fun setActionExpandScrollView(menuItem: MenuItem) {
+        menuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
+            override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
+                return true
+            }
+
+            override fun onMenuItemActionCollapse(item: MenuItem?): Boolean {
+                gameListViewModel.search("")
+                return true
+            }
+
         })
     }
 
@@ -122,7 +138,7 @@ class GameListFragment : BaseFragment<FragmentListGameBinding>(), GameListAdapte
         if (searchField.isNotEmpty()) {
             menuItem.expandActionView()
             searchView.clearFocus()
-            searchView.setQuery(gameListViewModel.queryField, true)
+            searchView.setQuery(gameListViewModel.queryField, false)
         }
     }
 

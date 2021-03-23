@@ -23,11 +23,11 @@
 
         <variable
             name="similar"
-            type="com.game.database.rawg.ui.adapters.similar.SimilarGamesAdapter" />
+            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
 
         <variable
             name="adapter"
-            type="com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter" />
+            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
 
     </data>
 

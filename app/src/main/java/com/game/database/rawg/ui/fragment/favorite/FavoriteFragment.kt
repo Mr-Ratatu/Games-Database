@@ -6,15 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.FragmentNavigatorExtras
-import com.game.database.rawg.ui.adapters.favourite.FavoriteAdapter
 import com.game.database.rawg.common.base.BaseFragment
 import com.game.database.rawg.data.model.list.GameResult
 import com.game.database.rawg.databinding.FragmentFavoriteBinding
 import com.game.database.rawg.extension.waitForTransition
+import com.game.database.rawg.ui.adapters.favourite.FavoriteAdapter
+import com.game.database.rawg.ui.adapters.listeners.FavoriteListener
 import kotlinx.android.synthetic.main.fragment_favorite.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(), FavoriteAdapter.FavoriteListener {
+class FavoriteFragment : BaseFragment<FragmentFavoriteBinding>(), FavoriteListener {
 
     private var favoriteAdapter: FavoriteAdapter? = null
     private val favoriteViewModel by viewModel<FavoriteViewModel>()

@@ -16,6 +16,7 @@
     <string name="transition_poster">poster %d</string>
     <string name="transition_title">title %d</string>
     <string name="genre">Жанр</string>
+    <string name="platform">Платформа</string>
     <string name="tags">Тэги</string>
     <string name="title">Game DB</string>
     <string name="search">Game search</string>
@@ -23,5 +24,7 @@
     <string name="results_could_not_be_loaded">Results could not be loaded</string>
     <string name="end_of_list">End of list</string>
     <string name="available_in_stores">Доступно в магазинах</string>
+    <string name="favourite">Favourite</string>
+    <string name="games">Games</string>
 
 </resources>

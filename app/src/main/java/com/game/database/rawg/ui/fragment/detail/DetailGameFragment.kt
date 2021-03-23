@@ -9,13 +9,14 @@ import androidx.core.widget.NestedScrollView
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.transition.TransitionInflater
-import com.game.database.rawg.ui.adapters.screenshots.ScreenshotsAdapter
 import com.game.database.rawg.common.base.BaseFragment
 import com.game.database.rawg.databinding.FragmentGameDetailBinding
 import com.game.database.rawg.common.utils.State
 import com.game.database.rawg.data.model.detail.StoreResponse
+import com.game.database.rawg.data.model.list.GameResult
+import com.game.database.rawg.data.model.list.ScreenshotsResult
 import com.game.database.rawg.extension.addOrRemoveFavorite
-import com.game.database.rawg.ui.adapters.similar.SimilarGamesAdapter
+import com.game.database.rawg.ui.adapters.GeneralAdapter
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import kotlinx.android.synthetic.main.bottom_persistent_dialog.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,8 +26,8 @@ class DetailGameFragment : BaseFragment<FragmentGameDetailBinding>() {
     private val detailViewModel by viewModel<DetailViewModel>()
     private val args by navArgs<DetailGameFragmentArgs>()
     private val resultDetail by lazy { args.gameResult }
-    private var screenshotsAdapter: ScreenshotsAdapter? = null
-    private var similarAdapter: SimilarGamesAdapter? = null
+    private var screenshotsAdapter: GeneralAdapter<ScreenshotsResult>? = null
+    private var similarAdapter: GeneralAdapter<GameResult>? = null
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<NestedScrollView>
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,8 +41,8 @@ class DetailGameFragment : BaseFragment<FragmentGameDetailBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        screenshotsAdapter = ScreenshotsAdapter()
-        similarAdapter = SimilarGamesAdapter()
+        screenshotsAdapter = GeneralAdapter()
+        similarAdapter = GeneralAdapter()
         bottomSheetBehavior = BottomSheetBehavior.from(bottom_sheet)
 
         binding.apply {
@@ -79,7 +80,7 @@ class DetailGameFragment : BaseFragment<FragmentGameDetailBinding>() {
             })
 
             similarGames.observe(viewLifecycleOwner, {
-                similarAdapter?.submitList(it.results)
+                similarAdapter?.submitList(it)
             })
 
             shareData.observe(viewLifecycleOwner, {
@@ -128,8 +129,8 @@ class DetailGameFragment : BaseFragment<FragmentGameDetailBinding>() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        screenshotsAdapter = null
         similarAdapter = null
+        screenshotsAdapter = null
     }
 
 }

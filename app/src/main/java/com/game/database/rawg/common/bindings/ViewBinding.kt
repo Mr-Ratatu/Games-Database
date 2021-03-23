@@ -7,8 +7,11 @@ import androidx.core.text.HtmlCompat
 import androidx.core.widget.NestedScrollView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.game.database.rawg.R
 import com.game.database.rawg.common.utils.State
 import com.game.database.rawg.data.model.detail.Genre
+import com.game.database.rawg.data.model.list.PlatformDataResponse
+import com.game.database.rawg.data.model.list.PlatformResponse
 import com.game.database.rawg.data.model.list.TagsResponse
 import com.game.database.rawg.extension.hide
 import com.game.database.rawg.extension.visible
@@ -74,6 +77,7 @@ fun ChipGroup.setGenres(genre: List<Genre>?) {
         for (g in genre) {
             val chip = Chip(context)
             chip.text = g.name
+            chip.chipBackgroundColor = context.getColorStateList(R.color.background)
             this.addView(chip)
         }
     }
@@ -84,6 +88,17 @@ fun ChipGroup.setTags(tags: List<TagsResponse>) {
     for (t in tags) {
         val chip = Chip(context)
         chip.text = t.tags
+        chip.chipBackgroundColor = context.getColorStateList(R.color.background)
+        this.addView(chip)
+    }
+}
+
+@BindingAdapter("platforms")
+fun ChipGroup.setPlatform(platform: List<PlatformDataResponse>) {
+    for (p in platform) {
+        val chip = Chip(context)
+        chip.text = p.platform.name
+        chip.chipBackgroundColor = context.getColorStateList(R.color.background)
         this.addView(chip)
     }
 }
