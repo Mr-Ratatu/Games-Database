@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/gameListFragment"
-        android:name="com.game.database.rawg.ui.fragment.list.GameListFragment"
+        android:name="com.game.database.rawg.presentation.ui.fragment.list.GameListFragment"
         android:label="GameListFragment"
         tools:layout="@layout/fragment_list_game" >
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/detailGameFragment"
-        android:name="com.game.database.rawg.ui.fragment.detail.DetailGameFragment"
+        android:name="com.game.database.rawg.presentation.ui.fragment.detail.DetailGameFragment"
         android:label="DetailGameFragment"
         tools:layout="@layout/fragment_game_detail" >
         <argument
@@ -30,7 +30,7 @@
     </fragment>
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.game.database.rawg.ui.fragment.favorite.FavoriteFragment"
+        android:name="com.game.database.rawg.presentation.ui.fragment.favorite.FavoriteFragment"
         android:label="FavouriteFragment"
         tools:layout="@layout/fragment_favorite">
         <action
@@ -40,7 +40,7 @@
 
     <dialog
         android:id="@+id/storesBottomDialog"
-        android:name="com.game.database.rawg.ui.fragment.detail.dialog.StoresBottomDialog"
+        android:name="com.game.database.rawg.presentation.ui.fragment.detail.dialog.StoresBottomDialog"
         android:label="StoresBottomDialog"
         tools:layout="@layout/dialog_stores">
         <argument

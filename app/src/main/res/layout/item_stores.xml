@@ -11,7 +11,7 @@
 
         <variable
             name="listener"
-            type="com.game.database.rawg.ui.adapters.listeners.StoresListener" />
+            type="com.game.database.rawg.presentation.ui.adapters.listeners.StoresListener" />
 
     </data>
 

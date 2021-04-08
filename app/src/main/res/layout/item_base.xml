@@ -9,7 +9,7 @@
 
         <variable
             name="listener"
-            type="com.game.database.rawg.common.base.BaseAdapterListener" />
+            type="com.game.database.rawg.presentation.base.adapter.BaseAdapterListener" />
 
     </data>
 

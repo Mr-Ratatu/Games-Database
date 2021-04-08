@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
+            type="com.game.database.rawg.presentation.ui.adapters.GeneralAdapter" />
 
     </data>
 

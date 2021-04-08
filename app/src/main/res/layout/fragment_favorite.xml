@@ -7,7 +7,7 @@
 
         <variable
             name="adapter"
-            type="com.game.database.rawg.ui.adapters.favourite.FavoriteAdapter" />
+            type="com.game.database.rawg.presentation.ui.adapters.favourite.FavoriteAdapter" />
 
     </data>
 

@@ -15,7 +15,7 @@
 
         <variable
             name="vm"
-            type="com.game.database.rawg.ui.fragment.detail.DetailViewModel" />
+            type="com.game.database.rawg.presentation.ui.fragment.detail.DetailViewModel" />
 
         <variable
             name="state"
@@ -23,11 +23,11 @@
 
         <variable
             name="adapter"
-            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
+            type="com.game.database.rawg.presentation.ui.adapters.GeneralAdapter" />
 
         <variable
             name="similar"
-            type="com.game.database.rawg.ui.adapters.GeneralAdapter" />
+            type="com.game.database.rawg.presentation.ui.adapters.GeneralAdapter" />
 
     </data>
 

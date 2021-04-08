@@ -4,7 +4,7 @@ plugins {
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id "androidx.navigation.safeargs.kotlin"
-
+    id "dagger.hilt.android.plugin"
 }
 
 android {
@@ -52,11 +52,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
-    // Koin
-    implementation("org.koin:koin-android:$koinVersion")
-    implementation("org.koin:koin-androidx-scope:$koinVersion")
-    implementation("org.koin:koin-androidx-viewmodel:$koinVersion")
-
     // RxJava && RxAndroid
     implementation "io.reactivex.rxjava3:rxjava:$rxJava"
     implementation "io.reactivex.rxjava3:rxandroid:$rxAndroid"
@@ -76,9 +71,6 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    // Lottie Animation Library
-    implementation 'com.airbnb.android:lottie:3.4.2'
-
     // Paging 3
     implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
     implementation "androidx.paging:paging-rxjava3:$pagingVersion"
@@ -89,6 +81,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.0"
+
+    // Dagger Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
     //Glide
     def glideVersion = '4.12.0'

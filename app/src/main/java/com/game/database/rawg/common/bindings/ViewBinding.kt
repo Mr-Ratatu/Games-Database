@@ -11,10 +11,9 @@ import com.game.database.rawg.R
 import com.game.database.rawg.common.utils.State
 import com.game.database.rawg.data.model.detail.Genre
 import com.game.database.rawg.data.model.list.PlatformDataResponse
-import com.game.database.rawg.data.model.list.PlatformResponse
 import com.game.database.rawg.data.model.list.TagsResponse
-import com.game.database.rawg.extension.hide
-import com.game.database.rawg.extension.visible
+import com.game.database.rawg.presentation.extension.hide
+import com.game.database.rawg.presentation.extension.visible
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import java.text.SimpleDateFormat
