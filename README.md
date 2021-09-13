@@ -1,4 +1,4 @@
-# GamesDataBase
+# Games DB
 
 <img src="https://github.com/Mr-Ratatu/GamesDataBase/raw/master/icon2.png" alt="Your image title" width="150"/>
 
